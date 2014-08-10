@@ -1,0 +1,5 @@
+df<-read.table("/Users/rajandeep/Downloads/Exploratory data analysis/household_power_consumption.txt",header=T,sep=";")
+dfsubset<-subset(df,df$Date=="1/2/2007" | df$Date == "2/2/2007")
+dfsubset$Date <- strptime(paste(dfsubset$Date,dfsubset$Time), "%d/%m/%Y %H:%M:%S")
+plot(dfsubset$Date,as.numeric(levels(dfsubset$Global_active_power))[dfsubset$Global_active_power],ylab = "Global Active Power (kilowatts)",xlab="",type="n")
+lines(dfsubset$Date,as.numeric(levels(dfsubset$Global_active_power))[dfsubset$Global_active_power])

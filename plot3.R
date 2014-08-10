@@ -1,0 +1,8 @@
+df<-read.table("/Users/rajandeep/Downloads/Exploratory data analysis/household_power_consumption.txt",header=T,sep=";")
+dfsubset<-subset(df,df$Date=="1/2/2007" | df$Date == "2/2/2007")
+dfsubset$Date <- strptime(paste(dfsubset$Date,dfsubset$Time), "%d/%m/%Y %H:%M:%S")
+plot(dfsubset$Date,as.numeric(levels(dfsubset$Sub_metering_1))[dfsubset$Sub_metering_1],type="n",ylab="Energy Sub Metering", xlab="")
+lines(dfsubset$Date,as.numeric(levels(dfsubset$Sub_metering_1))[dfsubset$Sub_metering_1],col="grey")
+lines(dfsubset$Date,as.numeric(levels(dfsubset$Sub_metering_2))[dfsubset$Sub_metering_2],col="red")
+lines(dfsubset$Date,dfsubset$Sub_metering_3,col="blue")
+legend('topright', c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),lty=1, col=c('grey','red', 'blue'), cex=.75)
